@@ -2,11 +2,48 @@
 Input: a List of integers
 Returns: a List of integers
 '''
-def product_of_all_other_numbers(arr):
+def product_of_all_other_numbers(arr, n):
     # Your code here
+    # base case
+    if n == 1:
+        return 0
 
-    pass
+    i, temp = 1, 1
 
+    # allocate memory for the product array
+    prod = [1 for i in range(n)]    
+
+    # initialize the product array as 1
+    # loop, temp variable contains product of elements on left side 
+    for i in range(n):
+        prod[i] = temp
+        temp *= arr[i]
+
+    # initialize temp to 1 for product on right side
+    temp = 1
+
+    #loop, temp variable contains products of elements on right side
+    for i in range(n-1, -1, -1):
+        prod[i] *= temp
+        temp *= arr[i]
+
+    #print constructed product array
+    for i in range(n):
+        print(prod[i], end = " ")  
+
+    return      
+"""
+    my_arr = [0] * len(arr)
+
+    for i in range(0, len(arr)):
+        copy = arr.copy()
+        copy[i] = 1
+        for val in copy:
+            total = total * val
+        my_arr[i] = total   
+
+    return my_arr     
+"""
 
 if __name__ == '__main__':
     # Use the main function to test your implementation
