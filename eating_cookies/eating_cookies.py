@@ -2,10 +2,21 @@
 Input: an integer
 Returns: an integer
 '''
-def eating_cookies(n):
+def eating_cookies(n, cache=None):
     # Your code here
+    if cache == None:
+        cache = [0] * (n +1)
 
-    pass
+    if n <= 1:
+        cache[n] = 1
+
+    elif n == 2:
+        cache[n] = 2
+
+    elif cache[n] == 0:
+        cache[n] = eating_cookies(n - 1, cache) + eating_cookies(n - 2, cache) + eating_cookies(n - 3, cache)   
+
+    return cache[n]            
 
 if __name__ == "__main__":
     # Use the main function here to test out your implementation
